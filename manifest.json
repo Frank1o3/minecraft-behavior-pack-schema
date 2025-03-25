@@ -11,7 +11,8 @@
             "description": "Manifest format version (must be 2 for behavior packs)",
             "enum": [
                 1,
-                2
+                2,
+                3
             ]
         },
         "header": {
@@ -46,7 +47,10 @@
                         "type": "integer"
                     },
                     "minItems": 3,
-                    "maxItems": 3
+                    "maxItems": 3,
+                    "enum": [
+                        [1,20,0]
+                    ]
                 },
                 "base_game_version": {
                     "type": "array",
