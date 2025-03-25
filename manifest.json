@@ -10,7 +10,7 @@
             "type": "integer",
             "description": "Manifest format version (must be 2 for behavior packs)",
             "enum": [
-                2
+                1,2
             ]
         },
         "header": {
