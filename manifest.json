@@ -10,7 +10,8 @@
             "type": "integer",
             "description": "Manifest format version (must be 2 for behavior packs)",
             "enum": [
-                1,2
+                1,
+                2
             ]
         },
         "header": {
@@ -144,45 +145,47 @@
             }
         },
         "capabilities": {
-            "type": "object",
-            "properties": {
-                "capabilities": {
-                    "type": "string",
-                    "description": "Capabilities provided by the pack",
-                    "enum": [
-                        "script_eval",
-                        "chemistry",
-                        "editorExtension",
-                        "experimental_custom_ui",
-                        "raytraced"
-                    ]
-                }
+            "type": "array",
+            "description": "Defines the script capabilities",
+            "items": {
+                "type": "array",
+                "enum": [
+                    "script_eval",
+                    "chemistry",
+                    "editorExtension",
+                    "gametest",
+                    "experimental_custom_ui",
+                    "raytraced"
+                ]
             }
         },
         "metadata": {
-            "type": "object",
-            "properties": {
-                "authors": {
-                    "type": "array",
-                    "description": "List of authors",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "license": {
-                    "type":"string",
-                    "description": "Used license"
-                },
-                "url": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "URL to the pack's website"
-                },
-                "generated_with": {
-                    "type": "array",
-                    "description": "Tools used to generate the pack",
-                    "items": {
-                        "type": "string"
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "authors": {
+                        "type": "array",
+                        "description": "List of authors",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "license": {
+                        "type": "string",
+                        "description": "Used license"
+                    },
+                    "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL to the pack's website"
+                    },
+                    "generated_with": {
+                        "type": "array",
+                        "description": "Tools used to generate the pack",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 }
             }
