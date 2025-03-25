@@ -1,6 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
     "id": "https://frank1o3.github.io/minecraft-behavior-pack-schema/manifest.json",
+    "identifier": "minecraft:behavior-pack-schema",
     "title": "Minecraft Bedrock Behavior Pack Manifest",
     "description": "Schema for Minecraft Bedrock behavior pack manifest.json files",
     "type": "object",
@@ -164,6 +165,22 @@
                 "authors": {
                     "type": "array",
                     "description": "List of authors",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "license": {
+                    "type":"string",
+                    "description": "Used license"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL to the pack's website"
+                },
+                "generated_with": {
+                    "type": "array",
+                    "description": "Tools used to generate the pack",
                     "items": {
                         "type": "string"
                     }
