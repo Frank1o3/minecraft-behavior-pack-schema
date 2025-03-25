@@ -1,5 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
+    "id": "https://frank1o3.github.io/minecraft-behavior-pack-schema/manifest.json",
     "title": "Minecraft Bedrock Behavior Pack Manifest",
     "description": "Schema for Minecraft Bedrock behavior pack manifest.json files",
     "type": "object",
@@ -42,6 +43,20 @@
                     },
                     "minItems": 3,
                     "maxItems": 3
+                },
+                "base_game_version": {
+                    "type": "array",
+                    "description": "Base game version",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                "pack_scope": {
+                    "type": "string",
+                    "enum": ["server", "client", "both"],
+                    "description": "Pack scope"
                 }
             },
             "required": ["name", "description", "uuid", "version", "min_engine_version"]
@@ -58,7 +73,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "enum": ["data", "client_data", "script"],
+                        "enum": ["resources", "data", "world_template", "script"],
                         "description": "Module type"
                     },
                     "uuid": {
@@ -85,10 +100,9 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "uuid": {
+                    "module_name": {
                         "type": "string",
-                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
-                        "description": "UUID of the dependency"
+                        "description": "Name of the dependency module"
                     },
                     "version": {
                         "type": "array",
@@ -100,7 +114,10 @@
                         "maxItems": 3
                     }
                 },
-                "required": ["uuid", "version"]
+                "required": [
+                    "module_name",
+                    "version"
+                ]
             }
         }
     },
