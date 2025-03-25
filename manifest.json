@@ -1,0 +1,108 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Minecraft Bedrock Behavior Pack Manifest",
+    "description": "Schema for Minecraft Bedrock behavior pack manifest.json files",
+    "type": "object",
+    "properties": {
+        "format_version": {
+            "type": "integer",
+            "description": "Manifest format version (must be 2 for behavior packs)",
+            "enum": [2]
+        },
+        "header": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Display name of the pack"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description (1-2 lines)"
+                },
+                "uuid": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                    "description": "Unique identifier (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)"
+                },
+                "version": {
+                    "type": "array",
+                    "description": "Version in [major, minor, revision] format",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                "min_engine_version": {
+                    "type": "array",
+                    "description": "Minimum required game version",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                }
+            },
+            "required": ["name", "description", "uuid", "version", "min_engine_version"]
+        },
+        "modules": {
+            "type": "array",
+            "description": "List of modules in the pack",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Module description"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["data", "client_data", "script"],
+                        "description": "Module type"
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                        "description": "Unique identifier for this module"
+                    },
+                    "version": {
+                        "type": "array",
+                        "description": "Module version",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                    }
+                },
+                "required": ["description", "type", "uuid", "version"]
+            }
+        },
+        "dependencies": {
+            "type": "array",
+            "description": "Required packs or modules",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                        "description": "UUID of the dependency"
+                    },
+                    "version": {
+                        "type": "array",
+                        "description": "Version of the dependency",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                    }
+                },
+                "required": ["uuid", "version"]
+            }
+        }
+    },
+    "required": ["format_version", "header", "modules", "dependencies"]
+}
