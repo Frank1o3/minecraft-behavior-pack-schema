@@ -8,7 +8,9 @@
         "format_version": {
             "type": "integer",
             "description": "Manifest format version (must be 2 for behavior packs)",
-            "enum": [2]
+            "enum": [
+                2
+            ]
         },
         "header": {
             "type": "object",
@@ -55,11 +57,21 @@
                 },
                 "pack_scope": {
                     "type": "string",
-                    "enum": ["server", "client", "both"],
+                    "enum": [
+                        "server",
+                        "client",
+                        "both"
+                    ],
                     "description": "Pack scope"
                 }
             },
-            "required": ["name", "description", "uuid", "version", "min_engine_version"]
+            "required": [
+                "name",
+                "description",
+                "uuid",
+                "version",
+                "min_engine_version"
+            ]
         },
         "modules": {
             "type": "array",
@@ -73,7 +85,12 @@
                     },
                     "type": {
                         "type": "string",
-                        "enum": ["resources", "data", "world_template", "script"],
+                        "enum": [
+                            "resources",
+                            "data",
+                            "world_template",
+                            "script"
+                        ],
                         "description": "Module type"
                     },
                     "uuid": {
@@ -91,7 +108,12 @@
                         "maxItems": 3
                     }
                 },
-                "required": ["description", "type", "uuid", "version"]
+                "required": [
+                    "description",
+                    "type",
+                    "uuid",
+                    "version"
+                ]
             }
         },
         "dependencies": {
@@ -119,7 +141,40 @@
                     "version"
                 ]
             }
+        },
+        "capabilities": {
+            "type": "object",
+            "properties": {
+                "capabilities": {
+                    "type": "string",
+                    "description": "Capabilities provided by the pack",
+                    "enum": [
+                        "script_eval",
+                        "chemistry",
+                        "editorExtension",
+                        "experimental_custom_ui",
+                        "raytraced"
+                    ]
+                }
+            }
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "authors": {
+                    "type": "array",
+                    "description": "List of authors",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
         }
     },
-    "required": ["format_version", "header", "modules", "dependencies"]
+    "required": [
+        "format_version",
+        "header",
+        "modules",
+        "dependencies"
+    ]
 }
