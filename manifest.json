@@ -149,18 +149,23 @@
             }
         },
         "capabilities": {
-            "type": "array",
+            "type": "object",
             "description": "Defines the script capabilities",
             "items": {
                 "type": "array",
-                "enum": [
-                    "script_eval",
-                    "chemistry",
-                    "editorExtension",
-                    "gametest",
-                    "experimental_custom_ui",
-                    "raytraced"
-                ]
+                "properties": {
+                    "capabilities": {
+                        "type":"array",
+                        "enum": [
+                            "script_eval",
+                            "chemistry",
+                            "editorExtension",
+                            "gametest",
+                            "experimental_custom_ui",
+                            "raytraced"
+                        ]
+                    }
+                }
             }
         },
         "metadata": {
