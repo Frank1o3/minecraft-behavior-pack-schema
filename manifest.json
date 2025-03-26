@@ -108,10 +108,8 @@
                         "type": "array",
                         "description": "Module version",
                         "items": {
-                            "type": "integer"
-                        },
-                        "minItems": 3,
-                        "maxItems": 3
+                            "type": "string"
+                        }
                     }
                 },
                 "required": [
